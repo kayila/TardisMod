@@ -1,11 +1,12 @@
 package tardis.common.dimension;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.darkcraft.darkcore.mod.helpers.MathHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.WorldInfo;
@@ -280,4 +281,10 @@ public class TardisWorldProvider extends WorldProvider
 		}
         return super.getFogColor(p_76562_1_, p_76562_2_);
     }
+
+	@Override
+	public DimensionType getDimensionType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

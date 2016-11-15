@@ -23,7 +23,7 @@ import tardis.common.core.flight.FlightConfiguration;
 import tardis.common.core.helpers.Helper;
 import tardis.common.tileents.extensions.upgrades.AbstractUpgrade;
 import tardis.common.tileents.extensions.upgrades.DimensionUpgrade;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class TardisDimensionHandler
 {

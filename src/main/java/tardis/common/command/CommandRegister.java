@@ -1,6 +1,6 @@
 package tardis.common.command;
 
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import io.darkcraft.darkcore.mod.abstracts.AbstractCommand;
 import io.darkcraft.darkcore.mod.handlers.CommandHandler;
 import net.minecraftforge.common.MinecraftForge;

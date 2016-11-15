@@ -6,17 +6,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import io.darkcraft.darkcore.mod.DarkcoreMod;
 import io.darkcraft.darkcore.mod.DarkcoreTeleporter;
 import io.darkcraft.darkcore.mod.abstracts.AbstractBlock;
@@ -26,7 +26,7 @@ import io.darkcraft.darkcore.mod.config.ConfigHandlerFactory;
 import io.darkcraft.darkcore.mod.helpers.PlayerHelper;
 import io.darkcraft.darkcore.mod.interfaces.IConfigHandlerMod;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import tardis.common.TardisProxy;
@@ -98,7 +98,7 @@ import tardis.common.tileents.extensions.chameleon.tardis.AbstractTardisChameleo
 import tardis.common.tileents.extensions.chameleon.tardis.DefaultTardisCham;
 import tardis.common.tileents.extensions.chameleon.tardis.NewTardisCham;
 import tardis.common.tileents.extensions.chameleon.tardis.PostboxTardisCham;
-import thaumcraft.api.ItemApi;
+//import thaumcraft.api.ItemApi; // TODO Re-enable when TC updates to 1.10
 
 @Mod(modid = "TardisMod", name = "Tardis Mod", version = "0.995", dependencies = "required-after:FML; required-after:darkcore@[0.4,0.49]; after:CoFHCore; after:appliedenergistics2; after:Waila; before:DragonAPI")
 public class TardisMod implements IConfigHandlerMod
@@ -121,7 +121,7 @@ public class TardisMod implements IConfigHandlerMod
 	public static TardisOwnershipRegistry						plReg;
 	public static CreativeTab									tab					= null;
 	public static CreativeTab									cTab				= null;
-	public static BiomeGenBase									consoleBiome		;
+	public static Biome											consoleBiome		;
 
 	public static AbstractBlock									tardisBlock;
 	public static AbstractBlock									tardisTopBlock;
@@ -199,7 +199,8 @@ public class TardisMod implements IConfigHandlerMod
 
 		refreshConfigs();
 
-		consoleBiome = new BiomeGenConsoleRoom(Configs.consoleBiomeID);
+		//consoleBiome = new BiomeGenConsoleRoom(Configs.consoleBiomeID);
+		consoleBiome = new BiomeGenConsoleRoom();
 //		BiomeDictionary.registerBiomeType(consoleBiome, BiomeDictionary.Type.PLAINS);
 		DimensionManager.registerProviderType(Configs.providerID, TardisWorldProvider.class, Configs.tardisLoaded);
 		initChameleonTypes();
@@ -246,7 +247,8 @@ public class TardisMod implements IConfigHandlerMod
 		FMLCommonHandler.instance().bus().register(dimEventHandler);
 		MinecraftForge.EVENT_BUS.register(dimEventHandler);
 		inited = true;
-		tcInstalled = ItemApi.getItem("itemResource", 0) != null;
+		// TODO Re-enable this check when TC is upgraded to 1.10
+		tcInstalled = false; // ItemApi.getItem("itemResource", 0) != null;
 		CommandRegister.registerListeners();
 		if (Configs.keyOnFirstJoin) PlayerHelper.registerJoinItem(new ItemStack(keyItem, 1));
 		FMLCommonHandler.instance().bus().register(ScrewdriverHelperFactory.i);

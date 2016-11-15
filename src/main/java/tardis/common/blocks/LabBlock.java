@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tardis.TardisMod;
 import tardis.common.tileents.LabTileEntity;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LabBlock extends AbstractBlockContainer
 {
@@ -41,10 +41,10 @@ public class LabBlock extends AbstractBlockContainer
 	public void initRecipes()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TardisMod.labBlock,1,0),true, "igi","ioi","iri",
-				'i', Items.iron_ingot,
-				'g', Blocks.glass,
-				'o', Items.gold_ingot,
-				'r', Items.redstone));
+				'i', Items.IRON_INGOT,
+				'g', Blocks.GLASS,
+				'o', Items.GOLD_INGOT,
+				'r', Items.REDSTONE));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -95,10 +95,10 @@ public class LabBlock extends AbstractBlockContainer
     		if(is != null)
     			power++;
     	
-    	world.scheduleBlockUpdate(x+1, y, z, Blocks.powered_comparator, 20);
-    	world.scheduleBlockUpdate(x-1, y, z, Blocks.powered_comparator, 20);
-    	world.scheduleBlockUpdate(x, y, z+1, Blocks.powered_comparator, 20);
-    	world.scheduleBlockUpdate(x, y, z-1, Blocks.powered_comparator, 20);
+    	world.scheduleBlockUpdate(x+1, y, z, Blocks.POWERED_COMPARATOR, 20);
+    	world.scheduleBlockUpdate(x-1, y, z, Blocks.POWERED_COMPARATOR, 20);
+    	world.scheduleBlockUpdate(x, y, z+1, Blocks.POWERED_COMPARATOR, 20);
+    	world.scheduleBlockUpdate(x, y, z-1, Blocks.POWERED_COMPARATOR, 20);
 
         return power;
     }
